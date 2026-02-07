@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counting Sort Visualizer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Mini Project Lab</h2>
+</div>
+
+<div class="container">
+    <h1>DAA: Counting Sort Visualizer</h1>
+    <p>Enter integers separated by commas</p>
+
+    <form method="POST">
+        <input type="text" name="numbers" placeholder="e.g. 5,2,9,1,5,6" required>
+        <button type="submit">Sort & Visualize Steps</button>
+    </form>
+
+    {% if steps %}
+    <div class="steps">
+        {% for step in steps %}
+            <div class="step">{{ step }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if sorted_output %}
+    <div class="output">
+        <h3>Final Sorted Output:</h3>
+        <p>{{ sorted_output }}</p>
+    </div>
+    {% endif %}
+
+    <div class="about">
+        <h3>About Counting Sort</h3>
+        <p>
+            Counting Sort is a non-comparison-based sorting algorithm that counts
+            occurrences of each element.
+        </p>
+        <p><b>Time Complexity:</b> O(n + k)</p>
+        <p><b>Space Complexity:</b> O(n + k)</p>
+    </div>
+</div>
+
+</body>
+</html>
