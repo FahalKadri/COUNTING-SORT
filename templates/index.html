@@ -7,29 +7,48 @@
 <body>
 
 <div class="navbar">
-    <h2>Mini Project Lab</h2>
+    <h2>DAA Individual Project</h2>
 </div>
 
 <div class="container">
-    <h1>DAA: Counting Sort Visualizer</h1>
-    <p>Enter integers separated by commas</p>
+    <h1>Counting Sort Visualizer</h1>
+    <p class="subtitle">Enter integers separated by commas</p>
 
     <form method="POST">
-        <input type="text" name="numbers" placeholder="e.g. 5,2,9,1,5,6" required>
-        <button type="submit">Sort & Visualize Steps</button>
-    </form>
+    <div class="input-row">
+        <input
+            type="text"
+            name="numbers"
+            placeholder="e.g. 3,2,9,4,5,8"
+            required
+        >
+
+        <button type="submit" class="primary-btn">
+            Sort & Visualize Steps
+        </button>
+
+        <button
+            type="button"
+            class="reset-btn"
+            onclick="window.location.href='/'"
+        >
+            Reset
+        </button>
+    </div>
+</form>
+
 
     {% if steps %}
-    <div class="steps">
+    <div class="steps" id="steps-container">
         {% for step in steps %}
-            <div class="step">{{ step }}</div>
+            <div class="step">Step {{ loop.index }}: {{ step }}</div>
         {% endfor %}
     </div>
     {% endif %}
 
     {% if sorted_output %}
     <div class="output">
-        <h3>Final Sorted Output:</h3>
+        <h3>Final Sorted Output</h3>
         <p>{{ sorted_output }}</p>
     </div>
     {% endif %}
@@ -44,6 +63,15 @@
         <p><b>Space Complexity:</b> O(n + k)</p>
     </div>
 </div>
+
+<!-- Step-by-step animation script -->
+<script>
+    const steps = document.querySelectorAll(".step");
+
+    steps.forEach((step, index) => {
+        step.style.animationDelay = `${index * 0.6}s`;
+    });
+</script>
 
 </body>
 </html>

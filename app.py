@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+
 
 app = Flask(__name__)
 
@@ -43,15 +44,19 @@ def counting_sort_with_steps(arr):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    steps = []
-    sorted_output = []
-
     if request.method == "POST":
         input_numbers = request.form["numbers"]
         arr = list(map(int, input_numbers.split(",")))
         sorted_output, steps = counting_sort_with_steps(arr)
 
-    return render_template("index.html", steps=steps, sorted_output=sorted_output)
+        return render_template(
+            "index.html",
+            steps=steps,
+            sorted_output=sorted_output
+        )
+
+    # GET request → fresh page
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
